@@ -1,0 +1,26 @@
+=== SLR(1) Parsing Table ===
+
+                   ACTION             |   GOTO   
+State | if |then|else |other| id | $  |Stmt|Expr|
+--------------------------------------------------------
+I0    | s1 |    |     | s2  |    |    | 3  |    |
+I1    |    |    |     |     | s4 |    |    | 5  |
+I2    |    |    | r3  |     |    | r3 |    |    |
+I3    |    |    |     |     |    |acc |    |    |
+I4    |    | r4 |     |     |    |    |    |    |
+I5    |    | s6 |     |     |    |    |    |    |
+I6    | s1 |    |     | s2  |    |    | 7  |    |
+I7    |    |    |s8/r2|     |    | r2 |    |    |
+I8    | s1 |    |     | s2  |    |    | 9  |    |
+I9    |    |    | r1  |     |    | r1 |    |    |
+--------------------------------------------------------
+
+Production Rules:
+  r0   StmtPrime -> Stmt
+  r1   Stmt -> if Expr then Stmt else Stmt
+  r2   Stmt -> if Expr then Stmt
+  r3   Stmt -> other
+  r4   Expr -> id
+
+⚠ CONFLICTS DETECTED (1):
+  * Shift/Reduce conflict in state 7 on 'else': existing='s8', new='r2'

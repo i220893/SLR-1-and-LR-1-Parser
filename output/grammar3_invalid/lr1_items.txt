@@ -1,0 +1,60 @@
+=== Canonical LR(1) Item Sets ===
+Total states: 14
+
+I0:
+  StartPrime -> • Start, [$]
+  Start -> • Lhs = Rhs, [$]
+  Start -> • Rhs, [$]
+  Lhs -> • * Rhs, [=, $]
+  Lhs -> • id, [=, $]
+  Rhs -> • Lhs, [$]
+
+I1:
+  Lhs -> * • Rhs, [=, $]
+  Rhs -> • Lhs, [=, $]
+  Lhs -> • * Rhs, [=, $]
+  Lhs -> • id, [=, $]
+
+I2:
+  Lhs -> id •, [=, $]
+
+I3:
+  StartPrime -> Start •, [$]
+
+I4:
+  Start -> Lhs • = Rhs, [$]
+  Rhs -> Lhs •, [$]
+
+I5:
+  Start -> Rhs •, [$]
+
+I6:
+  Rhs -> Lhs •, [=, $]
+
+I7:
+  Lhs -> * Rhs •, [=, $]
+
+I8:
+  Start -> Lhs = • Rhs, [$]
+  Rhs -> • Lhs, [$]
+  Lhs -> • * Rhs, [$]
+  Lhs -> • id, [$]
+
+I9:
+  Lhs -> * • Rhs, [$]
+  Rhs -> • Lhs, [$]
+  Lhs -> • * Rhs, [$]
+  Lhs -> • id, [$]
+
+I10:
+  Lhs -> id •, [$]
+
+I11:
+  Rhs -> Lhs •, [$]
+
+I12:
+  Start -> Lhs = Rhs •, [$]
+
+I13:
+  Lhs -> * Rhs •, [$]
+

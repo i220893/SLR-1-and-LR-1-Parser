@@ -1,0 +1,7 @@
+# Grammar 2 — Expression with Multiplication and Parentheses
+# Expr -> Expr + Term | Term
+# Term -> Term * Factor | Factor
+# Factor -> ( Expr ) | id
+Expr -> Expr + Term | Term
+Term -> Term * Factor | Factor
+Factor -> ( Expr ) | id

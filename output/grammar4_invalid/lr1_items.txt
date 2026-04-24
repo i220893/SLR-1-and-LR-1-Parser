@@ -1,0 +1,79 @@
+=== Canonical LR(1) Item Sets ===
+Total states: 17
+
+I0:
+  StmtPrime -> • Stmt, [$]
+  Stmt -> • if Expr then Stmt else Stmt, [$]
+  Stmt -> • if Expr then Stmt, [$]
+  Stmt -> • other, [$]
+
+I1:
+  Stmt -> if • Expr then Stmt else Stmt, [$]
+  Stmt -> if • Expr then Stmt, [$]
+  Expr -> • id, [then]
+
+I2:
+  Stmt -> other •, [$]
+
+I3:
+  StmtPrime -> Stmt •, [$]
+
+I4:
+  Expr -> id •, [then]
+
+I5:
+  Stmt -> if Expr • then Stmt else Stmt, [$]
+  Stmt -> if Expr • then Stmt, [$]
+
+I6:
+  Stmt -> if Expr then • Stmt else Stmt, [$]
+  Stmt -> if Expr then • Stmt, [$]
+  Stmt -> • if Expr then Stmt else Stmt, [else, $]
+  Stmt -> • if Expr then Stmt, [else, $]
+  Stmt -> • other, [else, $]
+
+I7:
+  Stmt -> if • Expr then Stmt else Stmt, [else, $]
+  Stmt -> if • Expr then Stmt, [else, $]
+  Expr -> • id, [then]
+
+I8:
+  Stmt -> other •, [else, $]
+
+I9:
+  Stmt -> if Expr then Stmt • else Stmt, [$]
+  Stmt -> if Expr then Stmt •, [$]
+
+I10:
+  Stmt -> if Expr • then Stmt else Stmt, [else, $]
+  Stmt -> if Expr • then Stmt, [else, $]
+
+I11:
+  Stmt -> if Expr then Stmt else • Stmt, [$]
+  Stmt -> • if Expr then Stmt else Stmt, [$]
+  Stmt -> • if Expr then Stmt, [$]
+  Stmt -> • other, [$]
+
+I12:
+  Stmt -> if Expr then • Stmt else Stmt, [else, $]
+  Stmt -> if Expr then • Stmt, [else, $]
+  Stmt -> • if Expr then Stmt else Stmt, [else, $]
+  Stmt -> • if Expr then Stmt, [else, $]
+  Stmt -> • other, [else, $]
+
+I13:
+  Stmt -> if Expr then Stmt else Stmt •, [$]
+
+I14:
+  Stmt -> if Expr then Stmt • else Stmt, [else, $]
+  Stmt -> if Expr then Stmt •, [else, $]
+
+I15:
+  Stmt -> if Expr then Stmt else • Stmt, [else, $]
+  Stmt -> • if Expr then Stmt else Stmt, [else, $]
+  Stmt -> • if Expr then Stmt, [else, $]
+  Stmt -> • other, [else, $]
+
+I16:
+  Stmt -> if Expr then Stmt else Stmt •, [else, $]
+

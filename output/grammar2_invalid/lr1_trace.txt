@@ -1,0 +1,88 @@
+
+[String 1] tokens: [id, +]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id + $                         | shift 2                            
+2     | [$:0] [id:2]                             | + $                            | reduce Factor -> id                
+3     | [$:0] [Factor:5]                         | + $                            | reduce Term -> Factor              
+4     | [$:0] [Term:4]                           | + $                            | reduce Expr -> Term                
+5     | [$:0] [Expr:3]                           | + $                            | shift 11                           
+6     | [$:0] [Expr:3] [+:11]                    | $                              | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 6: unexpected '$' in state 11
+(parse time: 1 ms)
+
+
+[String 2] tokens: [id, +, +, id]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id + + id $                    | shift 2                            
+2     | [$:0] [id:2]                             | + + id $                       | reduce Factor -> id                
+3     | [$:0] [Factor:5]                         | + + id $                       | reduce Term -> Factor              
+4     | [$:0] [Term:4]                           | + + id $                       | reduce Expr -> Term                
+5     | [$:0] [Expr:3]                           | + + id $                       | shift 11                           
+6     | [$:0] [Expr:3] [+:11]                    | + id $                         | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 6: unexpected '+' in state 11
+(parse time: 0 ms)
+
+
+[String 3] tokens: [(, id, +, id]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | ( id + id $                    | shift 1                            
+2     | [$:0] [(:1]                              | id + id $                      | shift 7                            
+3     | [$:0] [(:1] [id:7]                       | + id $                         | reduce Factor -> id                
+4     | [$:0] [(:1] [Factor:10]                  | + id $                         | reduce Term -> Factor              
+5     | [$:0] [(:1] [Term:9]                     | + id $                         | reduce Expr -> Term                
+6     | [$:0] [(:1] [Expr:8]                     | + id $                         | shift 14                           
+7     | [$:0] [(:1] [Expr:8] [+:14]              | id $                           | shift 7                            
+8     | [$:0] [(:1] [Expr:8] [+:14] [id:7]       | $                              | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 8: unexpected '$' in state 7
+(parse time: 0 ms)
+
+
+[String 4] tokens: [id, *, *, id]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id * * id $                    | shift 2                            
+2     | [$:0] [id:2]                             | * * id $                       | reduce Factor -> id                
+3     | [$:0] [Factor:5]                         | * * id $                       | reduce Term -> Factor              
+4     | [$:0] [Term:4]                           | * * id $                       | shift 12                           
+5     | [$:0] [Term:4] [*:12]                    | * id $                         | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 5: unexpected '*' in state 12
+(parse time: 0 ms)
+
+
+[String 5] tokens: [+, id]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | + id $                         | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 1: unexpected '+' in state 0
+(parse time: 0 ms)
+
+
+[String 6] tokens: [(, +, )]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | ( + ) $                        | shift 1                            
+2     | [$:0] [(:1]                              | + ) $                          | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 2: unexpected '+' in state 1
+(parse time: 0 ms)
+

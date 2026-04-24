@@ -1,0 +1,23 @@
+======================================================================
+  COMPARISON: SLR(1) vs LR(1)
+======================================================================
+
+Metric                          SLR(1)           LR(1)          
+--------------------------------------------------------------
+Number of states                7                7              
+ACTION entries                  12               12             
+GOTO entries                    5                5              
+Total table entries             17               17             
+Build time (ms)                 4                2               ms
+Has conflicts                   No               No             
+--------------------------------------------------------------
+
+Analysis:
+  Both parsers handle this grammar without conflicts.
+  SLR(1) uses fewer states (7) versus LR(1) (7).
+
+Conclusion:
+  LR(1) is strictly more powerful than SLR(1) because it uses
+  per-item lookaheads instead of global FOLLOW sets for reductions.
+  This precision avoids spurious conflicts at the cost of a potentially
+  larger number of states.

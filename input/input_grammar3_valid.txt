@@ -1,0 +1,17 @@
+# Valid input strings for Grammar 3 (Start -> Lhs = Rhs | Rhs)
+# Tokens separated by spaces, one string per line
+# Grammar:
+#   Start -> Lhs = Rhs | Rhs
+#   Lhs   -> * Rhs | id
+#   Rhs   -> Lhs
+
+# Simple id (Rhs -> Lhs -> id)
+id
+# Pointer dereference (Lhs -> * Rhs -> * Lhs -> * id)
+* id
+# Assignment: id = id
+id = id
+# Assignment: id = * id
+id = * id
+# Pointer assignment: * id = id
+* id = id

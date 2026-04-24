@@ -1,0 +1,5 @@
+# Grammar 4 — Dangling Else (classic ambiguous grammar)
+# Stmt -> if Expr then Stmt else Stmt | if Expr then Stmt | other
+# Expr -> id
+Stmt -> if Expr then Stmt else Stmt | if Expr then Stmt | other
+Expr -> id

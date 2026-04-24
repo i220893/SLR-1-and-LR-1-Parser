@@ -1,0 +1,130 @@
+
+[String 1] tokens: [other]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | other $                        | shift 2                            
+2     | [$:0] [other:2]                          | $                              | reduce Stmt -> other               
+3     | [$:0] [Stmt:3]                           | $                              | accept                             
+
+✔ String ACCEPTED
+
+Parse Tree:
+Stmt
+└── other
+
+S-Expression: (Stmt other)
+(parse time: 3 ms)
+
+
+[String 2] tokens: [if, id, then, other]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | if id then other $             | shift 1                            
+2     | [$:0] [if:1]                             | id then other $                | shift 4                            
+3     | [$:0] [if:1] [id:4]                      | then other $                   | reduce Expr -> id                  
+4     | [$:0] [if:1] [Expr:5]                    | then other $                   | shift 6                            
+5     | [$:0] [if:1] [Expr:5] [then:6]           | other $                        | shift 2                            
+6     | [$:0] [if:1] [Expr:5] [then:6] [other:2] | $                              | reduce Stmt -> other               
+7     | [$:0] [if:1] [Expr:5] [then:6] [Stmt:7]  | $                              | reduce Stmt -> if Expr then Stmt   
+8     | [$:0] [Stmt:3]                           | $                              | accept                             
+
+✔ String ACCEPTED
+
+Parse Tree:
+Stmt
+├── if
+├── Expr
+│   └── id
+├── then
+└── Stmt
+    └── other
+
+S-Expression: (Stmt if (Expr id) then (Stmt other))
+(parse time: 0 ms)
+
+
+[String 3] tokens: [if, id, then, other, else, other]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | if id then other else other $  | shift 1                            
+2     | [$:0] [if:1]                             | id then other else other $     | shift 4                            
+3     | [$:0] [if:1] [id:4]                      | then other else other $        | reduce Expr -> id                  
+4     | [$:0] [if:1] [Expr:5]                    | then other else other $        | shift 6                            
+5     | [$:0] [if:1] [Expr:5] [then:6]           | other else other $             | shift 2                            
+6     | [$:0] [if:1] [Expr:5] [then:6] [other:2] | else other $                   | reduce Stmt -> other               
+7     | [$:0] [if:1] [Expr:5] [then:6] [Stmt:7]  | else other $                   | CONFLICT: s8/r2                    
+
+✘ String REJECTED
+  Error: Syntax error at step 7: unexpected 'else' in state 7
+(parse time: 0 ms)
+
+
+[String 4] tokens: [if, id, then, if, id, then, other, else, other]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | if id then if id then other... | shift 1                            
+2     | [$:0] [if:1]                             | id then if id then other el... | shift 4                            
+3     | [$:0] [if:1] [id:4]                      | then if id then other else ... | reduce Expr -> id                  
+4     | [$:0] [if:1] [Expr:5]                    | then if id then other else ... | shift 6                            
+5     | [$:0] [if:1] [Expr:5] [then:6]           | if id then other else other $  | shift 1                            
+6     | [$:0] [if:1] [Expr:5] [then:6] [if:1]    | id then other else other $     | shift 4                            
+7     | ...if:1] [Expr:5] [then:6] [if:1] [id:4] | then other else other $        | reduce Expr -> id                  
+8     | ...:1] [Expr:5] [then:6] [if:1] [Expr:5] | then other else other $        | shift 6                            
+9     | ...:5] [then:6] [if:1] [Expr:5] [then:6] | other else other $             | shift 2                            
+10    | ...6] [if:1] [Expr:5] [then:6] [other:2] | else other $                   | reduce Stmt -> other               
+11    | ...:6] [if:1] [Expr:5] [then:6] [Stmt:7] | else other $                   | CONFLICT: s8/r2                    
+
+✘ String REJECTED
+  Error: Syntax error at step 11: unexpected 'else' in state 7
+(parse time: 1 ms)
+
+
+[String 5] tokens: [if, id, then, if, id, then, other, else, other, else, other]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | if id then if id then other... | shift 1                            
+2     | [$:0] [if:1]                             | id then if id then other el... | shift 4                            
+3     | [$:0] [if:1] [id:4]                      | then if id then other else ... | reduce Expr -> id                  
+4     | [$:0] [if:1] [Expr:5]                    | then if id then other else ... | shift 6                            
+5     | [$:0] [if:1] [Expr:5] [then:6]           | if id then other else other... | shift 1                            
+6     | [$:0] [if:1] [Expr:5] [then:6] [if:1]    | id then other else other el... | shift 4                            
+7     | ...if:1] [Expr:5] [then:6] [if:1] [id:4] | then other else other else ... | reduce Expr -> id                  
+8     | ...:1] [Expr:5] [then:6] [if:1] [Expr:5] | then other else other else ... | shift 6                            
+9     | ...:5] [then:6] [if:1] [Expr:5] [then:6] | other else other else other $  | shift 2                            
+10    | ...6] [if:1] [Expr:5] [then:6] [other:2] | else other else other $        | reduce Stmt -> other               
+11    | ...:6] [if:1] [Expr:5] [then:6] [Stmt:7] | else other else other $        | CONFLICT: s8/r2                    
+
+✘ String REJECTED
+  Error: Syntax error at step 11: unexpected 'else' in state 7
+(parse time: 0 ms)
+
+
+[String 6] tokens: [if, id, then, if, id, then, if, id, then, other, else, other]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | if id then if id then if id... | shift 1                            
+2     | [$:0] [if:1]                             | id then if id then if id th... | shift 4                            
+3     | [$:0] [if:1] [id:4]                      | then if id then if id then ... | reduce Expr -> id                  
+4     | [$:0] [if:1] [Expr:5]                    | then if id then if id then ... | shift 6                            
+5     | [$:0] [if:1] [Expr:5] [then:6]           | if id then if id then other... | shift 1                            
+6     | [$:0] [if:1] [Expr:5] [then:6] [if:1]    | id then if id then other el... | shift 4                            
+7     | ...if:1] [Expr:5] [then:6] [if:1] [id:4] | then if id then other else ... | reduce Expr -> id                  
+8     | ...:1] [Expr:5] [then:6] [if:1] [Expr:5] | then if id then other else ... | shift 6                            
+9     | ...:5] [then:6] [if:1] [Expr:5] [then:6] | if id then other else other $  | shift 1                            
+10    | ...en:6] [if:1] [Expr:5] [then:6] [if:1] | id then other else other $     | shift 4                            
+11    | ...if:1] [Expr:5] [then:6] [if:1] [id:4] | then other else other $        | reduce Expr -> id                  
+12    | ...:1] [Expr:5] [then:6] [if:1] [Expr:5] | then other else other $        | shift 6                            
+13    | ...:5] [then:6] [if:1] [Expr:5] [then:6] | other else other $             | shift 2                            
+14    | ...6] [if:1] [Expr:5] [then:6] [other:2] | else other $                   | reduce Stmt -> other               
+15    | ...:6] [if:1] [Expr:5] [then:6] [Stmt:7] | else other $                   | CONFLICT: s8/r2                    
+
+✘ String REJECTED
+  Error: Syntax error at step 15: unexpected 'else' in state 7
+(parse time: 0 ms)
+

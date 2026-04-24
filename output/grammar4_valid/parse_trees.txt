@@ -1,0 +1,38 @@
+SLR(1) - String 1:
+Stmt
+└── other
+
+LR(1) - String 1:
+Stmt
+└── other
+
+SLR(1) - String 2:
+Stmt
+├── if
+├── Expr
+│   └── id
+├── then
+└── Stmt
+    └── other
+
+LR(1) - String 2:
+Stmt
+├── if
+├── Expr
+│   └── id
+├── then
+└── Stmt
+    └── other
+
+LR(1) - String 3:
+Stmt
+├── if
+├── Expr
+│   └── id
+├── then
+├── Stmt
+│   └── other
+├── else
+└── Stmt
+    └── other
+

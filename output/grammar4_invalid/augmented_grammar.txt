@@ -1,0 +1,21 @@
+=== Augmented Grammar ===
+  (0) StmtPrime -> Stmt
+  (1) Stmt -> if Expr then Stmt else Stmt
+  (2) Stmt -> if Expr then Stmt
+  (3) Stmt -> other
+  (4) Expr -> id
+
+Terminals   : [if, then, else, other, id]
+NonTerminals: [StmtPrime, Stmt, Expr]
+Start Symbol: StmtPrime
+
+
+=== FIRST Sets ===
+  FIRST(StmtPrime      ) = [if, other]
+  FIRST(Stmt           ) = [if, other]
+  FIRST(Expr           ) = [id]
+
+=== FOLLOW Sets ===
+  FOLLOW(StmtPrime      ) = [$]
+  FOLLOW(Stmt           ) = [$, else]
+  FOLLOW(Expr           ) = [then]

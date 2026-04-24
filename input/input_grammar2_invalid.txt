@@ -1,0 +1,21 @@
+# Invalid input strings for Grammar 2 (Expression with * and parentheses)
+# Grammar:
+#   Expr -> Expr + Term | Term
+#   Term -> Term * Factor | Factor
+#   Factor -> ( Expr ) | id
+# These should all be REJECTED
+
+# Missing operand after +
+id +
+# Double operator
+id + + id
+# Unmatched parenthesis
+( id + id
+# Extra operator
+id * * id
+# Empty (no tokens)
+
+# Starts with operator
++ id
+# Operator between parens only
+( + )

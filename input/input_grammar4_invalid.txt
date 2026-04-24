@@ -1,0 +1,15 @@
+# Invalid input strings for Grammar 4 (Dangling Else)
+# These should all be rejected
+
+# Missing condition in if
+if then other
+# Missing then keyword
+if id other
+# else without if
+else other
+# Empty (no tokens)
+
+# Incomplete if-then (missing body)
+if id then
+# Double else
+if id then other else else other

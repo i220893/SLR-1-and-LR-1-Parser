@@ -1,0 +1,62 @@
+
+[String 1] tokens: [id, =]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id = $                         | shift 2                            
+2     | [$:0] [id:2]                             | = $                            | reduce Lhs -> id                   
+3     | [$:0] [Lhs:4]                            | = $                            | CONFLICT: s8/r5                    
+
+✘ String REJECTED
+  Error: Syntax error at step 3: unexpected '=' in state 4
+(parse time: 2 ms)
+
+
+[String 2] tokens: [id, =, =, id]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id = = id $                    | shift 2                            
+2     | [$:0] [id:2]                             | = = id $                       | reduce Lhs -> id                   
+3     | [$:0] [Lhs:4]                            | = = id $                       | CONFLICT: s8/r5                    
+
+✘ String REJECTED
+  Error: Syntax error at step 3: unexpected '=' in state 4
+(parse time: 0 ms)
+
+
+[String 3] tokens: [*]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | * $                            | shift 1                            
+2     | [$:0] [*:1]                              | $                              | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 2: unexpected '$' in state 1
+(parse time: 0 ms)
+
+
+[String 4] tokens: [id, =, id, =, id]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id = id = id $                 | shift 2                            
+2     | [$:0] [id:2]                             | = id = id $                    | reduce Lhs -> id                   
+3     | [$:0] [Lhs:4]                            | = id = id $                    | CONFLICT: s8/r5                    
+
+✘ String REJECTED
+  Error: Syntax error at step 3: unexpected '=' in state 4
+(parse time: 0 ms)
+
+
+[String 5] tokens: [=, id]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | = id $                         | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 1: unexpected '=' in state 0
+(parse time: 0 ms)
+

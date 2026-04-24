@@ -1,0 +1,17 @@
+# Valid input strings for Grammar 1 (Simple Expression)
+# Grammar:
+#   Expr -> Expr + Term | Term
+#   Term -> Factor
+#   Factor -> id
+# NOTE: No * operator, no parentheses — only id and +
+
+# Single id
+id
+# Two ids added
+id + id
+# Three ids
+id + id + id
+# Long chain
+id + id + id + id
+# Five terms
+id + id + id + id + id

@@ -1,0 +1,210 @@
+
+[String 1] tokens: [id]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id $                           | shift 1                            
+2     | [$:0] [id:1]                             | $                              | reduce Factor -> id                
+3     | [$:0] [Factor:4]                         | $                              | reduce Term -> Factor              
+4     | [$:0] [Term:3]                           | $                              | reduce Expr -> Term                
+5     | [$:0] [Expr:2]                           | $                              | accept                             
+
+✔ String ACCEPTED
+
+Parse Tree:
+Expr
+└── Term
+    └── Factor
+        └── id
+
+S-Expression: (Expr (Term (Factor id)))
+(parse time: 2 ms)
+
+
+[String 2] tokens: [id, +, id]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id + id $                      | shift 1                            
+2     | [$:0] [id:1]                             | + id $                         | reduce Factor -> id                
+3     | [$:0] [Factor:4]                         | + id $                         | reduce Term -> Factor              
+4     | [$:0] [Term:3]                           | + id $                         | reduce Expr -> Term                
+5     | [$:0] [Expr:2]                           | + id $                         | shift 5                            
+6     | [$:0] [Expr:2] [+:5]                     | id $                           | shift 1                            
+7     | [$:0] [Expr:2] [+:5] [id:1]              | $                              | reduce Factor -> id                
+8     | [$:0] [Expr:2] [+:5] [Factor:4]          | $                              | reduce Term -> Factor              
+9     | [$:0] [Expr:2] [+:5] [Term:6]            | $                              | reduce Expr -> Expr + Term         
+10    | [$:0] [Expr:2]                           | $                              | accept                             
+
+✔ String ACCEPTED
+
+Parse Tree:
+Expr
+├── Expr
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+S-Expression: (Expr (Expr (Term (Factor id))) + (Term (Factor id)))
+(parse time: 1 ms)
+
+
+[String 3] tokens: [id, +, id, +, id]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id + id + id $                 | shift 1                            
+2     | [$:0] [id:1]                             | + id + id $                    | reduce Factor -> id                
+3     | [$:0] [Factor:4]                         | + id + id $                    | reduce Term -> Factor              
+4     | [$:0] [Term:3]                           | + id + id $                    | reduce Expr -> Term                
+5     | [$:0] [Expr:2]                           | + id + id $                    | shift 5                            
+6     | [$:0] [Expr:2] [+:5]                     | id + id $                      | shift 1                            
+7     | [$:0] [Expr:2] [+:5] [id:1]              | + id $                         | reduce Factor -> id                
+8     | [$:0] [Expr:2] [+:5] [Factor:4]          | + id $                         | reduce Term -> Factor              
+9     | [$:0] [Expr:2] [+:5] [Term:6]            | + id $                         | reduce Expr -> Expr + Term         
+10    | [$:0] [Expr:2]                           | + id $                         | shift 5                            
+11    | [$:0] [Expr:2] [+:5]                     | id $                           | shift 1                            
+12    | [$:0] [Expr:2] [+:5] [id:1]              | $                              | reduce Factor -> id                
+13    | [$:0] [Expr:2] [+:5] [Factor:4]          | $                              | reduce Term -> Factor              
+14    | [$:0] [Expr:2] [+:5] [Term:6]            | $                              | reduce Expr -> Expr + Term         
+15    | [$:0] [Expr:2]                           | $                              | accept                             
+
+✔ String ACCEPTED
+
+Parse Tree:
+Expr
+├── Expr
+│   ├── Expr
+│   │   └── Term
+│   │       └── Factor
+│   │           └── id
+│   ├── +
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+S-Expression: (Expr (Expr (Expr (Term (Factor id))) + (Term (Factor id))) + (Term (Factor id)))
+(parse time: 1 ms)
+
+
+[String 4] tokens: [id, +, id, +, id, +, id]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id + id + id + id $            | shift 1                            
+2     | [$:0] [id:1]                             | + id + id + id $               | reduce Factor -> id                
+3     | [$:0] [Factor:4]                         | + id + id + id $               | reduce Term -> Factor              
+4     | [$:0] [Term:3]                           | + id + id + id $               | reduce Expr -> Term                
+5     | [$:0] [Expr:2]                           | + id + id + id $               | shift 5                            
+6     | [$:0] [Expr:2] [+:5]                     | id + id + id $                 | shift 1                            
+7     | [$:0] [Expr:2] [+:5] [id:1]              | + id + id $                    | reduce Factor -> id                
+8     | [$:0] [Expr:2] [+:5] [Factor:4]          | + id + id $                    | reduce Term -> Factor              
+9     | [$:0] [Expr:2] [+:5] [Term:6]            | + id + id $                    | reduce Expr -> Expr + Term         
+10    | [$:0] [Expr:2]                           | + id + id $                    | shift 5                            
+11    | [$:0] [Expr:2] [+:5]                     | id + id $                      | shift 1                            
+12    | [$:0] [Expr:2] [+:5] [id:1]              | + id $                         | reduce Factor -> id                
+13    | [$:0] [Expr:2] [+:5] [Factor:4]          | + id $                         | reduce Term -> Factor              
+14    | [$:0] [Expr:2] [+:5] [Term:6]            | + id $                         | reduce Expr -> Expr + Term         
+15    | [$:0] [Expr:2]                           | + id $                         | shift 5                            
+16    | [$:0] [Expr:2] [+:5]                     | id $                           | shift 1                            
+17    | [$:0] [Expr:2] [+:5] [id:1]              | $                              | reduce Factor -> id                
+18    | [$:0] [Expr:2] [+:5] [Factor:4]          | $                              | reduce Term -> Factor              
+19    | [$:0] [Expr:2] [+:5] [Term:6]            | $                              | reduce Expr -> Expr + Term         
+20    | [$:0] [Expr:2]                           | $                              | accept                             
+
+✔ String ACCEPTED
+
+Parse Tree:
+Expr
+├── Expr
+│   ├── Expr
+│   │   ├── Expr
+│   │   │   └── Term
+│   │   │       └── Factor
+│   │   │           └── id
+│   │   ├── +
+│   │   └── Term
+│   │       └── Factor
+│   │           └── id
+│   ├── +
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+S-Expression: (Expr (Expr (Expr (Expr (Term (Factor id))) + (Term (Factor id))) + (Term (Factor id))) + (Term (Factor id)))
+(parse time: 2 ms)
+
+
+[String 5] tokens: [id, +, id, +, id, +, id, +, id]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id + id + id + id + id $       | shift 1                            
+2     | [$:0] [id:1]                             | + id + id + id + id $          | reduce Factor -> id                
+3     | [$:0] [Factor:4]                         | + id + id + id + id $          | reduce Term -> Factor              
+4     | [$:0] [Term:3]                           | + id + id + id + id $          | reduce Expr -> Term                
+5     | [$:0] [Expr:2]                           | + id + id + id + id $          | shift 5                            
+6     | [$:0] [Expr:2] [+:5]                     | id + id + id + id $            | shift 1                            
+7     | [$:0] [Expr:2] [+:5] [id:1]              | + id + id + id $               | reduce Factor -> id                
+8     | [$:0] [Expr:2] [+:5] [Factor:4]          | + id + id + id $               | reduce Term -> Factor              
+9     | [$:0] [Expr:2] [+:5] [Term:6]            | + id + id + id $               | reduce Expr -> Expr + Term         
+10    | [$:0] [Expr:2]                           | + id + id + id $               | shift 5                            
+11    | [$:0] [Expr:2] [+:5]                     | id + id + id $                 | shift 1                            
+12    | [$:0] [Expr:2] [+:5] [id:1]              | + id + id $                    | reduce Factor -> id                
+13    | [$:0] [Expr:2] [+:5] [Factor:4]          | + id + id $                    | reduce Term -> Factor              
+14    | [$:0] [Expr:2] [+:5] [Term:6]            | + id + id $                    | reduce Expr -> Expr + Term         
+15    | [$:0] [Expr:2]                           | + id + id $                    | shift 5                            
+16    | [$:0] [Expr:2] [+:5]                     | id + id $                      | shift 1                            
+17    | [$:0] [Expr:2] [+:5] [id:1]              | + id $                         | reduce Factor -> id                
+18    | [$:0] [Expr:2] [+:5] [Factor:4]          | + id $                         | reduce Term -> Factor              
+19    | [$:0] [Expr:2] [+:5] [Term:6]            | + id $                         | reduce Expr -> Expr + Term         
+20    | [$:0] [Expr:2]                           | + id $                         | shift 5                            
+21    | [$:0] [Expr:2] [+:5]                     | id $                           | shift 1                            
+22    | [$:0] [Expr:2] [+:5] [id:1]              | $                              | reduce Factor -> id                
+23    | [$:0] [Expr:2] [+:5] [Factor:4]          | $                              | reduce Term -> Factor              
+24    | [$:0] [Expr:2] [+:5] [Term:6]            | $                              | reduce Expr -> Expr + Term         
+25    | [$:0] [Expr:2]                           | $                              | accept                             
+
+✔ String ACCEPTED
+
+Parse Tree:
+Expr
+├── Expr
+│   ├── Expr
+│   │   ├── Expr
+│   │   │   ├── Expr
+│   │   │   │   └── Term
+│   │   │   │       └── Factor
+│   │   │   │           └── id
+│   │   │   ├── +
+│   │   │   └── Term
+│   │   │       └── Factor
+│   │   │           └── id
+│   │   ├── +
+│   │   └── Term
+│   │       └── Factor
+│   │           └── id
+│   ├── +
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+S-Expression: (Expr (Expr (Expr (Expr (Expr (Term (Factor id))) + (Term (Factor id))) + (Term (Factor id))) + (Term (Factor id))) + (Term (Factor id)))
+(parse time: 1 ms)
+

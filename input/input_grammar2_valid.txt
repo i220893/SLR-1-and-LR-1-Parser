@@ -1,0 +1,23 @@
+# Valid input strings for Grammar 2 (Expression with * and parentheses)
+# Grammar:
+#   Expr -> Expr + Term | Term
+#   Term -> Term * Factor | Factor
+#   Factor -> ( Expr ) | id
+# Tokens separated by spaces, one string per line
+
+# Simple id
+id
+# Addition
+id + id
+# Multiplication
+id * id
+# Mixed: id + id * id
+id + id * id
+# Parenthesised expression
+( id )
+# Complex nested
+( id + id ) * id
+# Deeply nested
+( ( id + id ) * id + id )
+# Long chain
+id + id + id + id

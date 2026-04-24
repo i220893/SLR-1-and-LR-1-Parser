@@ -1,0 +1,69 @@
+
+[String 1] tokens: [if, then, other]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | if then other $                | shift 1                            
+2     | [$:0] [if:1]                             | then other $                   | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 2: unexpected 'then' in state 1
+(parse time: 1 ms)
+
+
+[String 2] tokens: [if, id, other]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | if id other $                  | shift 1                            
+2     | [$:0] [if:1]                             | id other $                     | shift 4                            
+3     | [$:0] [if:1] [id:4]                      | other $                        | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 3: unexpected 'other' in state 4
+(parse time: 0 ms)
+
+
+[String 3] tokens: [else, other]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | else other $                   | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 1: unexpected 'else' in state 0
+(parse time: 0 ms)
+
+
+[String 4] tokens: [if, id, then]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | if id then $                   | shift 1                            
+2     | [$:0] [if:1]                             | id then $                      | shift 4                            
+3     | [$:0] [if:1] [id:4]                      | then $                         | reduce Expr -> id                  
+4     | [$:0] [if:1] [Expr:5]                    | then $                         | shift 6                            
+5     | [$:0] [if:1] [Expr:5] [then:6]           | $                              | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 5: unexpected '$' in state 6
+(parse time: 0 ms)
+
+
+[String 5] tokens: [if, id, then, other, else, else, other]
+=== LR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | if id then other else else ... | shift 1                            
+2     | [$:0] [if:1]                             | id then other else else oth... | shift 4                            
+3     | [$:0] [if:1] [id:4]                      | then other else else other $   | reduce Expr -> id                  
+4     | [$:0] [if:1] [Expr:5]                    | then other else else other $   | shift 6                            
+5     | [$:0] [if:1] [Expr:5] [then:6]           | other else else other $        | shift 8                            
+6     | [$:0] [if:1] [Expr:5] [then:6] [other:8] | else else other $              | reduce Stmt -> other               
+7     | [$:0] [if:1] [Expr:5] [then:6] [Stmt:9]  | else else other $              | shift 11                           
+8     | ... [Expr:5] [then:6] [Stmt:9] [else:11] | else other $                   | error                              
+
+✘ String REJECTED
+  Error: Syntax error at step 8: unexpected 'else' in state 11
+(parse time: 0 ms)
+

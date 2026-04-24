@@ -1,0 +1,47 @@
+=== Canonical LR(0) Item Sets (SLR(1)) ===
+Total states: 10
+
+I0:
+  StmtPrime -> • Stmt
+  Stmt -> • if Expr then Stmt else Stmt
+  Stmt -> • if Expr then Stmt
+  Stmt -> • other
+
+I1:
+  Stmt -> if • Expr then Stmt else Stmt
+  Stmt -> if • Expr then Stmt
+  Expr -> • id
+
+I2:
+  Stmt -> other •
+
+I3:
+  StmtPrime -> Stmt •
+
+I4:
+  Expr -> id •
+
+I5:
+  Stmt -> if Expr • then Stmt else Stmt
+  Stmt -> if Expr • then Stmt
+
+I6:
+  Stmt -> if Expr then • Stmt else Stmt
+  Stmt -> if Expr then • Stmt
+  Stmt -> • if Expr then Stmt else Stmt
+  Stmt -> • if Expr then Stmt
+  Stmt -> • other
+
+I7:
+  Stmt -> if Expr then Stmt • else Stmt
+  Stmt -> if Expr then Stmt •
+
+I8:
+  Stmt -> if Expr then Stmt else • Stmt
+  Stmt -> • if Expr then Stmt else Stmt
+  Stmt -> • if Expr then Stmt
+  Stmt -> • other
+
+I9:
+  Stmt -> if Expr then Stmt else Stmt •
+

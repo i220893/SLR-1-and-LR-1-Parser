@@ -1,0 +1,61 @@
+=== Canonical LR(0) Item Sets (SLR(1)) ===
+Total states: 12
+
+I0:
+  ExprPrime -> • Expr
+  Expr -> • Expr + Term
+  Expr -> • Term
+  Term -> • Term * Factor
+  Term -> • Factor
+  Factor -> • ( Expr )
+  Factor -> • id
+
+I1:
+  Factor -> ( • Expr )
+  Expr -> • Expr + Term
+  Expr -> • Term
+  Term -> • Term * Factor
+  Term -> • Factor
+  Factor -> • ( Expr )
+  Factor -> • id
+
+I2:
+  Factor -> id •
+
+I3:
+  ExprPrime -> Expr •
+  Expr -> Expr • + Term
+
+I4:
+  Expr -> Term •
+  Term -> Term • * Factor
+
+I5:
+  Term -> Factor •
+
+I6:
+  Factor -> ( Expr • )
+  Expr -> Expr • + Term
+
+I7:
+  Expr -> Expr + • Term
+  Term -> • Term * Factor
+  Term -> • Factor
+  Factor -> • ( Expr )
+  Factor -> • id
+
+I8:
+  Term -> Term * • Factor
+  Factor -> • ( Expr )
+  Factor -> • id
+
+I9:
+  Factor -> ( Expr ) •
+
+I10:
+  Expr -> Expr + Term •
+  Term -> Term • * Factor
+
+I11:
+  Term -> Term * Factor •
+

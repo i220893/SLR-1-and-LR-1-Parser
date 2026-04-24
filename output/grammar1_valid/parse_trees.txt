@@ -1,0 +1,160 @@
+SLR(1) - String 1:
+Expr
+└── Term
+    └── Factor
+        └── id
+
+LR(1) - String 1:
+Expr
+└── Term
+    └── Factor
+        └── id
+
+SLR(1) - String 2:
+Expr
+├── Expr
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+LR(1) - String 2:
+Expr
+├── Expr
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+SLR(1) - String 3:
+Expr
+├── Expr
+│   ├── Expr
+│   │   └── Term
+│   │       └── Factor
+│   │           └── id
+│   ├── +
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+LR(1) - String 3:
+Expr
+├── Expr
+│   ├── Expr
+│   │   └── Term
+│   │       └── Factor
+│   │           └── id
+│   ├── +
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+SLR(1) - String 4:
+Expr
+├── Expr
+│   ├── Expr
+│   │   ├── Expr
+│   │   │   └── Term
+│   │   │       └── Factor
+│   │   │           └── id
+│   │   ├── +
+│   │   └── Term
+│   │       └── Factor
+│   │           └── id
+│   ├── +
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+LR(1) - String 4:
+Expr
+├── Expr
+│   ├── Expr
+│   │   ├── Expr
+│   │   │   └── Term
+│   │   │       └── Factor
+│   │   │           └── id
+│   │   ├── +
+│   │   └── Term
+│   │       └── Factor
+│   │           └── id
+│   ├── +
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+SLR(1) - String 5:
+Expr
+├── Expr
+│   ├── Expr
+│   │   ├── Expr
+│   │   │   ├── Expr
+│   │   │   │   └── Term
+│   │   │   │       └── Factor
+│   │   │   │           └── id
+│   │   │   ├── +
+│   │   │   └── Term
+│   │   │       └── Factor
+│   │   │           └── id
+│   │   ├── +
+│   │   └── Term
+│   │       └── Factor
+│   │           └── id
+│   ├── +
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+LR(1) - String 5:
+Expr
+├── Expr
+│   ├── Expr
+│   │   ├── Expr
+│   │   │   ├── Expr
+│   │   │   │   └── Term
+│   │   │   │       └── Factor
+│   │   │   │           └── id
+│   │   │   ├── +
+│   │   │   └── Term
+│   │   │       └── Factor
+│   │   │           └── id
+│   │   ├── +
+│   │   └── Term
+│   │       └── Factor
+│   │           └── id
+│   ├── +
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+

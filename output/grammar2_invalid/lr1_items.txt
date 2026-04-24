@@ -1,0 +1,106 @@
+=== Canonical LR(1) Item Sets ===
+Total states: 22
+
+I0:
+  ExprPrime -> • Expr, [$]
+  Expr -> • Expr + Term, [$, +]
+  Expr -> • Term, [$, +]
+  Term -> • Term * Factor, [$, +, *]
+  Term -> • Factor, [$, +, *]
+  Factor -> • ( Expr ), [$, +, *]
+  Factor -> • id, [$, +, *]
+
+I1:
+  Factor -> ( • Expr ), [$, +, *]
+  Expr -> • Expr + Term, [), +]
+  Expr -> • Term, [), +]
+  Term -> • Term * Factor, [), +, *]
+  Term -> • Factor, [), +, *]
+  Factor -> • ( Expr ), [), +, *]
+  Factor -> • id, [), +, *]
+
+I2:
+  Factor -> id •, [$, +, *]
+
+I3:
+  ExprPrime -> Expr •, [$]
+  Expr -> Expr • + Term, [$, +]
+
+I4:
+  Expr -> Term •, [$, +]
+  Term -> Term • * Factor, [$, +, *]
+
+I5:
+  Term -> Factor •, [$, +, *]
+
+I6:
+  Factor -> ( • Expr ), [), +, *]
+  Expr -> • Expr + Term, [), +]
+  Expr -> • Term, [), +]
+  Term -> • Term * Factor, [), +, *]
+  Term -> • Factor, [), +, *]
+  Factor -> • ( Expr ), [), +, *]
+  Factor -> • id, [), +, *]
+
+I7:
+  Factor -> id •, [), +, *]
+
+I8:
+  Factor -> ( Expr • ), [$, +, *]
+  Expr -> Expr • + Term, [), +]
+
+I9:
+  Expr -> Term •, [), +]
+  Term -> Term • * Factor, [), +, *]
+
+I10:
+  Term -> Factor •, [), +, *]
+
+I11:
+  Expr -> Expr + • Term, [$, +]
+  Term -> • Term * Factor, [$, +, *]
+  Term -> • Factor, [$, +, *]
+  Factor -> • ( Expr ), [$, +, *]
+  Factor -> • id, [$, +, *]
+
+I12:
+  Term -> Term * • Factor, [$, +, *]
+  Factor -> • ( Expr ), [$, +, *]
+  Factor -> • id, [$, +, *]
+
+I13:
+  Factor -> ( Expr • ), [), +, *]
+  Expr -> Expr • + Term, [), +]
+
+I14:
+  Expr -> Expr + • Term, [), +]
+  Term -> • Term * Factor, [), +, *]
+  Term -> • Factor, [), +, *]
+  Factor -> • ( Expr ), [), +, *]
+  Factor -> • id, [), +, *]
+
+I15:
+  Factor -> ( Expr ) •, [$, +, *]
+
+I16:
+  Term -> Term * • Factor, [), +, *]
+  Factor -> • ( Expr ), [), +, *]
+  Factor -> • id, [), +, *]
+
+I17:
+  Expr -> Expr + Term •, [$, +]
+  Term -> Term • * Factor, [$, +, *]
+
+I18:
+  Term -> Term * Factor •, [$, +, *]
+
+I19:
+  Factor -> ( Expr ) •, [), +, *]
+
+I20:
+  Expr -> Expr + Term •, [), +]
+  Term -> Term • * Factor, [), +, *]
+
+I21:
+  Term -> Term * Factor •, [), +, *]
+

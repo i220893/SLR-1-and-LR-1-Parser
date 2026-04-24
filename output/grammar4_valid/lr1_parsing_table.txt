@@ -1,0 +1,33 @@
+=== LR(1) Parsing Table ===
+
+                   ACTION              |   GOTO   
+State | if |then| else |other| id | $  |Stmt|Expr|
+---------------------------------------------------------
+I0    | s1 |    |      | s2  |    |    | 3  |    |
+I1    |    |    |      |     | s4 |    |    | 5  |
+I2    |    |    |      |     |    | r3 |    |    |
+I3    |    |    |      |     |    |acc |    |    |
+I4    |    | r4 |      |     |    |    |    |    |
+I5    |    | s6 |      |     |    |    |    |    |
+I6    | s7 |    |      | s8  |    |    | 9  |    |
+I7    |    |    |      |     | s4 |    |    | 10 |
+I8    |    |    |  r3  |     |    | r3 |    |    |
+I9    |    |    | s11  |     |    | r2 |    |    |
+I10   |    |s12 |      |     |    |    |    |    |
+I11   | s1 |    |      | s2  |    |    | 13 |    |
+I12   | s7 |    |      | s8  |    |    | 14 |    |
+I13   |    |    |      |     |    | r1 |    |    |
+I14   |    |    |s15/r2|     |    | r2 |    |    |
+I15   | s7 |    |      | s8  |    |    | 16 |    |
+I16   |    |    |  r1  |     |    | r1 |    |    |
+---------------------------------------------------------
+
+Production Rules:
+  r0   StmtPrime -> Stmt
+  r1   Stmt -> if Expr then Stmt else Stmt
+  r2   Stmt -> if Expr then Stmt
+  r3   Stmt -> other
+  r4   Expr -> id
+
+⚠ CONFLICTS DETECTED (1):
+  * Shift/Reduce conflict in state 14 on 'else': existing='s15', new='r2'

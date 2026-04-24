@@ -1,0 +1,18 @@
+# Valid input strings for Grammar 4 (Dangling Else)
+# Grammar:
+#   Stmt -> if Expr then Stmt else Stmt | if Expr then Stmt | other
+#   Expr -> id
+# Tokens separated by spaces, one string per line
+
+# Simple other statement
+other
+# Simple if-then
+if id then other
+# if-then with other in else
+if id then other else other
+# Nested if-then inside then branch
+if id then if id then other else other
+# Nested if-then-else
+if id then if id then other else other else other
+# Deep nesting
+if id then if id then if id then other else other

@@ -1,0 +1,29 @@
+=== SLR(1) Parsing Table ===
+
+                  ACTION            |      GOTO       
+State | +  | *  | (  | )  | id | $  |Expr|Term|Factor|
+--------------------------------------------------------------
+I0    |    |    | s1 |    | s2 |    | 3  | 4  |  5   |
+I1    |    |    | s1 |    | s2 |    | 6  | 4  |  5   |
+I2    | r6 | r6 |    | r6 |    | r6 |    |    |      |
+I3    | s7 |    |    |    |    |acc |    |    |      |
+I4    | r2 | s8 |    | r2 |    | r2 |    |    |      |
+I5    | r4 | r4 |    | r4 |    | r4 |    |    |      |
+I6    | s7 |    |    | s9 |    |    |    |    |      |
+I7    |    |    | s1 |    | s2 |    |    | 10 |  5   |
+I8    |    |    | s1 |    | s2 |    |    |    |  11  |
+I9    | r5 | r5 |    | r5 |    | r5 |    |    |      |
+I10   | r1 | s8 |    | r1 |    | r1 |    |    |      |
+I11   | r3 | r3 |    | r3 |    | r3 |    |    |      |
+--------------------------------------------------------------
+
+Production Rules:
+  r0   ExprPrime -> Expr
+  r1   Expr -> Expr + Term
+  r2   Expr -> Term
+  r3   Term -> Term * Factor
+  r4   Term -> Factor
+  r5   Factor -> ( Expr )
+  r6   Factor -> id
+
+✔ No conflicts — grammar is LR(1).

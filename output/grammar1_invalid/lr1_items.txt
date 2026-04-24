@@ -1,0 +1,31 @@
+=== Canonical LR(1) Item Sets ===
+Total states: 7
+
+I0:
+  ExprPrime -> • Expr, [$]
+  Expr -> • Expr + Term, [$, +]
+  Expr -> • Term, [$, +]
+  Term -> • Factor, [$, +]
+  Factor -> • id, [$, +]
+
+I1:
+  Factor -> id •, [$, +]
+
+I2:
+  ExprPrime -> Expr •, [$]
+  Expr -> Expr • + Term, [$, +]
+
+I3:
+  Expr -> Term •, [$, +]
+
+I4:
+  Term -> Factor •, [$, +]
+
+I5:
+  Expr -> Expr + • Term, [$, +]
+  Term -> • Factor, [$, +]
+  Factor -> • id, [$, +]
+
+I6:
+  Expr -> Expr + Term •, [$, +]
+

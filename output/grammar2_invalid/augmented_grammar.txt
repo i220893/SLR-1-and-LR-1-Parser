@@ -1,0 +1,25 @@
+=== Augmented Grammar ===
+  (0) ExprPrime -> Expr
+  (1) Expr -> Expr + Term
+  (2) Expr -> Term
+  (3) Term -> Term * Factor
+  (4) Term -> Factor
+  (5) Factor -> ( Expr )
+  (6) Factor -> id
+
+Terminals   : [+, *, (, ), id]
+NonTerminals: [ExprPrime, Expr, Term, Factor]
+Start Symbol: ExprPrime
+
+
+=== FIRST Sets ===
+  FIRST(ExprPrime      ) = [(, id]
+  FIRST(Expr           ) = [(, id]
+  FIRST(Term           ) = [(, id]
+  FIRST(Factor         ) = [(, id]
+
+=== FOLLOW Sets ===
+  FOLLOW(ExprPrime      ) = [$]
+  FOLLOW(Expr           ) = [$, ), +]
+  FOLLOW(Term           ) = [$, ), *, +]
+  FOLLOW(Factor         ) = [$, ), *, +]

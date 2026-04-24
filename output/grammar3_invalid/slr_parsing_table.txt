@@ -1,0 +1,27 @@
+=== SLR(1) Parsing Table ===
+
+             ACTION        |      GOTO      
+State |  =  | *  | id | $  |Start|Lhs |Rhs |
+--------------------------------------------------
+I0    |     | s1 | s2 |    |  3  | 4  | 5  |
+I1    |     | s1 | s2 |    |     | 6  | 7  |
+I2    | r4  |    |    | r4 |     |    |    |
+I3    |     |    |    |acc |     |    |    |
+I4    |s8/r5|    |    | r5 |     |    |    |
+I5    |     |    |    | r2 |     |    |    |
+I6    | r5  |    |    | r5 |     |    |    |
+I7    | r3  |    |    | r3 |     |    |    |
+I8    |     | s1 | s2 |    |     | 6  | 9  |
+I9    |     |    |    | r1 |     |    |    |
+--------------------------------------------------
+
+Production Rules:
+  r0   StartPrime -> Start
+  r1   Start -> Lhs = Rhs
+  r2   Start -> Rhs
+  r3   Lhs -> * Rhs
+  r4   Lhs -> id
+  r5   Rhs -> Lhs
+
+⚠ CONFLICTS DETECTED (1):
+  * Shift/Reduce conflict in state 4 on '=': existing='s8', new='r5'

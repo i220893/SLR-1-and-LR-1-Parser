@@ -1,0 +1,11 @@
+# Grammar 3 — Classic SLR(1) Conflict Example (L=R | R grammar)
+# This grammar is LR(1) but NOT SLR(1).
+# SLR(1) will report a Shift/Reduce conflict on '=' in certain states
+# because FOLLOW(Rhs) = {$} but the item Lhs -> * Rhs . also requires =.
+#
+# Start -> Lhs = Rhs | Rhs
+# Lhs   -> * Rhs | id
+# Rhs   -> Lhs
+Start -> Lhs = Rhs | Rhs
+Lhs -> * Rhs | id
+Rhs -> Lhs

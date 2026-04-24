@@ -1,0 +1,92 @@
+
+[String 1] tokens: [id]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id $                           | shift 2                            
+2     | [$:0] [id:2]                             | $                              | reduce Lhs -> id                   
+3     | [$:0] [Lhs:4]                            | $                              | reduce Rhs -> Lhs                  
+4     | [$:0] [Rhs:5]                            | $                              | reduce Start -> Rhs                
+5     | [$:0] [Start:3]                          | $                              | accept                             
+
+✔ String ACCEPTED
+
+Parse Tree:
+Start
+└── Rhs
+    └── Lhs
+        └── id
+
+S-Expression: (Start (Rhs (Lhs id)))
+(parse time: 3 ms)
+
+
+[String 2] tokens: [*, id]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | * id $                         | shift 1                            
+2     | [$:0] [*:1]                              | id $                           | shift 2                            
+3     | [$:0] [*:1] [id:2]                       | $                              | reduce Lhs -> id                   
+4     | [$:0] [*:1] [Lhs:6]                      | $                              | reduce Rhs -> Lhs                  
+5     | [$:0] [*:1] [Rhs:7]                      | $                              | reduce Lhs -> * Rhs                
+6     | [$:0] [Lhs:4]                            | $                              | reduce Rhs -> Lhs                  
+7     | [$:0] [Rhs:5]                            | $                              | reduce Start -> Rhs                
+8     | [$:0] [Start:3]                          | $                              | accept                             
+
+✔ String ACCEPTED
+
+Parse Tree:
+Start
+└── Rhs
+    └── Lhs
+        ├── *
+        └── Rhs
+            └── Lhs
+                └── id
+
+S-Expression: (Start (Rhs (Lhs * (Rhs (Lhs id)))))
+(parse time: 1 ms)
+
+
+[String 3] tokens: [id, =, id]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id = id $                      | shift 2                            
+2     | [$:0] [id:2]                             | = id $                         | reduce Lhs -> id                   
+3     | [$:0] [Lhs:4]                            | = id $                         | CONFLICT: s8/r5                    
+
+✘ String REJECTED
+  Error: Syntax error at step 3: unexpected '=' in state 4
+(parse time: 1 ms)
+
+
+[String 4] tokens: [id, =, *, id]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | id = * id $                    | shift 2                            
+2     | [$:0] [id:2]                             | = * id $                       | reduce Lhs -> id                   
+3     | [$:0] [Lhs:4]                            | = * id $                       | CONFLICT: s8/r5                    
+
+✘ String REJECTED
+  Error: Syntax error at step 3: unexpected '=' in state 4
+(parse time: 0 ms)
+
+
+[String 5] tokens: [*, id, =, id]
+=== SLR(1) ===
+Step  | Stack (symbol:state)                     | Remaining Input                | Action                             
+-----------------------------------------------------------------------------------------------------------------------
+1     | [$:0]                                    | * id = id $                    | shift 1                            
+2     | [$:0] [*:1]                              | id = id $                      | shift 2                            
+3     | [$:0] [*:1] [id:2]                       | = id $                         | reduce Lhs -> id                   
+4     | [$:0] [*:1] [Lhs:6]                      | = id $                         | reduce Rhs -> Lhs                  
+5     | [$:0] [*:1] [Rhs:7]                      | = id $                         | reduce Lhs -> * Rhs                
+6     | [$:0] [Lhs:4]                            | = id $                         | CONFLICT: s8/r5                    
+
+✘ String REJECTED
+  Error: Syntax error at step 6: unexpected '=' in state 4
+(parse time: 1 ms)
+

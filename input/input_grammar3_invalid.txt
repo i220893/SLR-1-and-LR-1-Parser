@@ -1,0 +1,15 @@
+# Invalid input strings for Grammar 3 (Start -> Lhs = Rhs | Rhs)
+# These should all be rejected by the parser
+
+# Assignment with missing RHS
+id =
+# Double assignment operator
+id = = id
+# Bare * with no operand
+*
+# Chained assignment (not in grammar)
+id = id = id
+# Empty (no tokens)
+
+# Starts with =
+= id

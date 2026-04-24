@@ -1,0 +1,7 @@
+# Grammar 1 — Simple Expression Grammar
+# Expr -> Expr + Term | Term
+# Term -> Factor
+# Factor -> id
+Expr -> Expr + Term | Term
+Term -> Factor
+Factor -> id

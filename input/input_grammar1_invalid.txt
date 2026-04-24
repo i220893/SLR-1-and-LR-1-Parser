@@ -1,0 +1,21 @@
+# Invalid input strings for Grammar 1 (Simple Expression)
+# Grammar:
+#   Expr -> Expr + Term | Term
+#   Term -> Factor
+#   Factor -> id
+# These should all be REJECTED
+
+# * is not in grammar 1
+id * id
+# Parentheses not in grammar 1
+( id )
+# Missing operand after +
+id +
+# Double operator
+id + + id
+# Empty (no tokens)
+
+# Starts with operator
++ id
+# Operator only
++

@@ -1,0 +1,24 @@
+=== Augmented Grammar ===
+  (0) StartPrime -> Start
+  (1) Start -> Lhs = Rhs
+  (2) Start -> Rhs
+  (3) Lhs -> * Rhs
+  (4) Lhs -> id
+  (5) Rhs -> Lhs
+
+Terminals   : [=, *, id]
+NonTerminals: [StartPrime, Start, Lhs, Rhs]
+Start Symbol: StartPrime
+
+
+=== FIRST Sets ===
+  FIRST(StartPrime     ) = [*, id]
+  FIRST(Start          ) = [*, id]
+  FIRST(Lhs            ) = [*, id]
+  FIRST(Rhs            ) = [*, id]
+
+=== FOLLOW Sets ===
+  FOLLOW(StartPrime     ) = [$]
+  FOLLOW(Start          ) = [$]
+  FOLLOW(Lhs            ) = [$, =]
+  FOLLOW(Rhs            ) = [$, =]
