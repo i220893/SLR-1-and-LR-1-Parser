@@ -6,10 +6,10 @@
 ## Team Members
 | Roll Number | Name |
 |---|---|
-| 22i-XXXX | Member 1 |
-| 22i-YYYY | Member 2 |
+| 22i-0893 | Hussain Waseem Syed |
+| 22i-1409 | Mohammad Abbas |
 
-**Section:** A  
+**Section:** C  
 **Language:** Java
 
 ---
