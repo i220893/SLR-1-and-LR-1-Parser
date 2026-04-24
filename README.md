@@ -32,18 +32,15 @@ Assignment3/
 │   ├── grammar2.txt             ← Expression with * and ()
 │   ├── grammar3.txt             ← Classic SLR conflict (LR(1) only)
 │   ├── grammar_with_conflict.txt← Dangling else
-│   ├── input_valid.txt          ← Valid test strings
-│   └── input_invalid.txt        ← Invalid test strings
+│   ├── input_grammarX_valid.txt ← Valid test strings for each grammar
+│   └── input_grammarX_invalid.txt ← Invalid test strings for each grammar
 ├── output/                      ← Auto-generated at runtime
-│   ├── augmented_grammar.txt
-│   ├── slr_items.txt
-│   ├── slr_parsing_table.txt
-│   ├── slr_trace.txt
-│   ├── lr1_items.txt
-│   ├── lr1_parsing_table.txt
-│   ├── lr1_trace.txt
-│   ├── comparison.txt
-│   └── parse_trees.txt
+│   ├── grammar1_valid/          ← Results organised per grammar & validity
+│   ├── grammar1_invalid/
+│   └── ...
+├── docs/
+│   └── report.tex               ← LaTeX detailed project report
+├── run_all.bat                  ← Windows batch script to run entire test suite
 └── README.md
 ```
 
@@ -68,29 +65,25 @@ javac -d out src\*.java
 
 ## Execution
 
-### Run Both Parsers (default)
-```bash
-java -cp out Main input/grammar2.txt input/input_valid.txt --both
+The easiest way to execute all grammars with valid and invalid input strings, and save all the outputs into organised subfolders, is to run the batch script on Windows:
+
+```cmd
+.\run_all.bat
 ```
 
-### Run SLR(1) Only
+### Manual Execution: Run Both Parsers (default)
 ```bash
-java -cp out Main input/grammar2.txt input/input_valid.txt --slr
+java -cp out Main input/grammar2.txt input/input_grammar2_valid.txt --both
 ```
 
-### Run LR(1) Only
+### Manual Execution: Run SLR(1) Only
 ```bash
-java -cp out Main input/grammar2.txt input/input_valid.txt --lr1
+java -cp out Main input/grammar2.txt input/input_grammar2_valid.txt --slr
 ```
 
-### Test SLR(1) Conflict Grammar
+### Manual Execution: Run LR(1) Only
 ```bash
-java -cp out Main input/grammar3.txt input/input_valid.txt --both
-```
-
-### Test Invalid Strings
-```bash
-java -cp out Main input/grammar2.txt input/input_invalid.txt --both
+java -cp out Main input/grammar2.txt input/input_grammar2_valid.txt --lr1
 ```
 
 ---
@@ -123,7 +116,7 @@ Factor -> ( Expr ) | id
 - Tokens separated by spaces
 - Lines starting with `#` are comments
 
-**Example (`input_valid.txt`):**
+**Example (`input_grammar2_valid.txt`):**
 ```
 id
 id + id
@@ -137,25 +130,4 @@ id * id
 
 - Grammar 4 (dangling else) is inherently ambiguous; both parsers will report conflicts. This is expected behaviour.
 - Grammar 3 demonstrates SLR(1) conflicts that LR(1) resolves — use `--both` to see the comparison.
-- Very long input strings may produce wide trace output; redirect to a file for readability.
-
----
-
-## Sample Commands
-
-```bash
-# Compile
-javac -d out src/*.java
-
-# Run Grammar 1 (simple expression)
-java -cp out Main input/grammar1.txt input/input_valid.txt --both
-
-# Run Grammar 2 (full expression with * and parentheses)
-java -cp out Main input/grammar2.txt input/input_valid.txt --both
-
-# Demonstrate SLR(1) vs LR(1) conflict resolution
-java -cp out Main input/grammar3.txt input/input_valid.txt --both
-
-# Test with invalid strings
-java -cp out Main input/grammar2.txt input/input_invalid.txt --both
-```
+- Very long input strings may produce wide trace output; redirect to a file for readability (or check the generated `output/` subfolders).
